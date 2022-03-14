@@ -41,18 +41,54 @@ namespace MyApp
 
         private void ApplyPB_Click_1(object sender, EventArgs e)
         {
+            if (CheckSimmilarPlan())
+            {
+                MessageBox.Show("В вас вже є такий план", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (NewTaskTB.Text == "" || NewTaskTB.Text == " ")
+                {
+                    MessageBox.Show("Це поле не може бути пустим", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    string connStr = "Data Source=ALEXPC;Initial Catalog=testDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                    using (SqlConnection connection = new SqlConnection(connStr))
+                    {
+                        connection.Open();
+                        string query = $"UPDATE {username}Table SET TargetText = '{NewTaskTB.Text}' WHERE TargetText = '{label1.Text}'";
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.ExecuteNonQuery();
+                    }
+                    NewTaskTB.Visible = false;
+                    ApplyPB.Visible = false;
+                    label1.Visible = true;
+                    label1.Text = NewTaskTB.Text;
+                }
+            }
+        }
+        bool CheckSimmilarPlan()
+        {
             string connStr = "Data Source=ALEXPC;Initial Catalog=testDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             using (SqlConnection connection = new SqlConnection(connStr))
             {
+
                 connection.Open();
-                string query = $"UPDATE {username}Table SET TargetText = '{NewTaskTB.Text}' WHERE TargetText = '{label1.Text}'";
+                string query = $"SELECT * FROM {username}Table ORDER BY ID";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (NewTaskTB.Text == reader["TargetText"].ToString())
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
             }
-            NewTaskTB.Visible = false;
-            ApplyPB.Visible = false;
-            label1.Visible = true;
-            label1.Text = NewTaskTB.Text;
         }
 
         private void BackUpPB_Click(object sender, EventArgs e)
@@ -93,7 +129,7 @@ namespace MyApp
             NewTaskTB.BackColor = Color.FromArgb(112, 112, 112);
             NewTaskTB.ForeColor = Color.White;
             memStr = label1.Text;
-            label1.Text = $"Deleted ({label1.Text}) {DateTime.Now.ToLongTimeString()}";
+            label1.Text = $"Done ({label1.Text}) {DateTime.Now.ToLongTimeString()}";
         }
     }
 }

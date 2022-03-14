@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Саша\\Desktop\\C#\\test\\MyApp\\MyApp\\MyApp.csproj": {}
+    "C:\\github\\myAppWinForms\\MyApp\\MyApp\\MyApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Саша\\Desktop\\C#\\test\\MyApp\\MyApp\\MyApp.csproj": {
+    "C:\\github\\myAppWinForms\\MyApp\\MyApp\\MyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Саша\\Desktop\\C#\\test\\MyApp\\MyApp\\MyApp.csproj",
+        "projectUniqueName": "C:\\github\\myAppWinForms\\MyApp\\MyApp\\MyApp.csproj",
         "projectName": "MyApp",
-        "projectPath": "C:\\Users\\Саша\\Desktop\\C#\\test\\MyApp\\MyApp\\MyApp.csproj",
+        "projectPath": "C:\\github\\myAppWinForms\\MyApp\\MyApp\\MyApp.csproj",
         "packagesPath": "C:\\Users\\Саша\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Саша\\Desktop\\C#\\test\\MyApp\\MyApp\\obj\\",
+        "outputPath": "C:\\github\\myAppWinForms\\MyApp\\MyApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

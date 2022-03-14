@@ -106,10 +106,5 @@ namespace Book_Shop
             recoverPass.Show();
             Hide();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
